@@ -32,8 +32,13 @@ const ShoppingList = {
     return Object.keys(this.items).map(key => this.items[key]);
   },
   delete: function(id) {
-    console.log(`Deleting shopping list item \`${id}\``);
-    delete this.items[id];
+    console.log(!(id in this.items))
+    if(!(id in this.items)) {
+      console.log(`Can't delete item ${id} because it doesn't exist.`)
+    } else {
+      console.log(`Deleting shopping list item \`${id}\``);
+      delete this.items[id];
+    }
   },
   update: function(updatedItem) {
     console.log(`Deleting shopping list item \`${updatedItem.id}\``);
@@ -69,8 +74,12 @@ const Recipes = {
     return Object.keys(this.items).map(key => this.items[key]);
   },
   delete: function(itemId) {
-    console.log(`Deleting recipe with id \`${itemId}\``);
-    delete this.items[itemId];
+     if(this.items[itemId] == undefined) {
+      console.log(`Can't delete item ${itemId} because it doesn't exist.`)
+    } else {
+      console.log(`Deleting recipe with id \`${itemId}\``);
+      delete this.items[itemId];
+    }
   },
   update: function(updatedItem) {
     console.log(`Updating recipe with id \`${updatedItem.id}\``);
